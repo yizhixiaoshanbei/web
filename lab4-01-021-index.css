@@ -49,6 +49,7 @@ body {
   background: #ff6600;
   transform: scale(1.08);
 }
+/* 购物车/搜索图标悬停旋转 */
 .nav li.icon {
   font-size: 20px;
 }
@@ -56,12 +57,8 @@ body {
   animation: rotateIcon 0.6s linear;
 }
 @keyframes rotateIcon {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 .container {
   width: 1100px;
@@ -105,7 +102,7 @@ body {
   font-size: 18px;
 }
 
-/* 【最终修复版 平滑左右轮播】 */
+/* ========== 题目要求：从下向上轮播 ========== */
 .slider-box {
   width: 100%;
   height: 220px;
@@ -114,29 +111,27 @@ body {
   margin-bottom: 20px;
 }
 .slider {
-  width: 300%;
-  height: 220px;
-  display: flex;
-  /* 总时长12s 匀速动画 */
-  animation: bannerMove 12s infinite linear;
+  width: 100%;
+  height: 660px;
+  animation: slideUp 9s infinite linear;
 }
 .slider img {
   width: 100%;
   height: 220px;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
 }
-@keyframes bannerMove {
-  0%    { transform: translateX(0); }
-  30%   { transform: translateX(0); }
+@keyframes slideUp {
+  0%    { transform: translateY(0); }
+  30%   { transform: translateY(0); }
 
-  33%   { transform: translateX(-100%); }
-  63%   { transform: translateX(-100%); }
+  33%   { transform: translateY(-220px); }
+  63%   { transform: translateY(-220px); }
 
-  66%   { transform: translateX(-200%); }
-  96%   { transform: translateX(-200%); }
+  66%   { transform: translateY(-440px); }
+  96%   { transform: translateY(-440px); }
 
-  100%  { transform: translateX(0); }
+  100%  { transform: translateY(0); }
 }
 
 .relative-box {
@@ -181,6 +176,8 @@ body {
   transform: scale(1.05);
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
+
+/* ========== 热门图书动效：右移、放大、阴影加深 ========== */
 .hot-books {
   margin: 10px 0;
 }
@@ -288,6 +285,7 @@ body {
   padding: 0 8px;
   border: 1px solid #ccc;
 }
+/* ========== 登录按钮：悬停背景渐变+缩放 ========== */
 .loginBox button {
   width: 100%;
   height: 38px;
