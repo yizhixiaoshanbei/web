@@ -105,7 +105,7 @@ body {
   font-size: 18px;
 }
 
-/* ========== 左右轮播 ========== */
+/* ================= 完美左右轮播 ================= */
 .slider-box {
   width: 100%;
   height: 220px;
@@ -117,21 +117,24 @@ body {
   width: 300%;
   height: 220px;
   display: flex;
-  animation: slideLeft 9s infinite linear;
+  animation: slideLeft 12s infinite linear;
 }
 .slider img {
   width: 100%;
   height: 220px;
-  display: block;
   object-fit: cover;
+  display: block;
 }
 @keyframes slideLeft {
   0%   { transform: translateX(0); }
-  30%  { transform: translateX(0); }
+  25%  { transform: translateX(0); }
+  
   33%  { transform: translateX(-100%); }
-  63%  { transform: translateX(-100%); }
+  58%  { transform: translateX(-100%); }
+  
   66%  { transform: translateX(-200%); }
-  96%  { transform: translateX(-200%); }
+  91%  { transform: translateX(-200%); }
+  
   100% { transform: translateX(0); }
 }
 
