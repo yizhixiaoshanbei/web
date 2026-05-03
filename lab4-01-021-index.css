@@ -1,4 +1,306 @@
-/* 轮播图 - 完美上下自动滑动 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+
+/* 头部导航栏 */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* 主体容器 */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 150px 1fr 200px;
+    gap: 20px;
+}
+
+/* 左侧分类导航 */
+.category-nav {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.category-nav h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.category-nav ul {
+    list-style: none;
+}
+
+.category-nav li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.category-nav li:hover {
+    color: #3498db;
+}
+
+/* 中间内容区 */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* 热门推荐 */
+.hot-books {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.hot-books h3 {
+    grid-column: 1 / -1;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.book-card {
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.book-card.selected {
+    border: 2px solid #aed6f1;
+    background-color: #ebf5fb;
+}
+
+.book-card img {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.book-card img:hover {
+    transform: translateX(5px) scale(1.08);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.book-price {
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.book-tag {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 12px;
+    border-radius: 2px;
+    float: right;
+}
+
+/* 新书上市表格 */
+.new-books h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.new-books table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.new-books th, .new-books td {
+    border: 1px solid #333;
+    padding: 8px;
+}
+
+.new-books th {
+    background-color: #f8f9fa;
+}
+
+/* 右侧促销区 */
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.promo-banner {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.promo-text {
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 右下角客服图标 */
+.customer-service {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* 装饰性代码文字 */
+.code-text {
+    color: #3498db;
+    font-family: monospace;
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* 登录/注册弹窗样式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-box {
+    position: relative;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 350px;
+}
+
+.modal-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-login, .btn-register {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(45deg, #3498db, #2980b9);
+}
+
+.btn-login:hover, .btn-register:hover {
+    transform: scale(1.05);
+    background-image: linear-gradient(45deg, #2980b9, #3498db);
+}
+
+.btn-switch {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #e74c3c;
+}
+
+/* ========== 【全新重写】纯CSS 上下垂直轮播 ========== */
 .carousel-section {
     width: 100%;
     text-align: center;
@@ -8,41 +310,57 @@
     font-size: 18px;
     margin-bottom: 10px;
 }
+/* 可视窗口 */
 .carousel {
     width: 320px;
     height: 400px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 4px;
-    position: relative;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-.carousel img {
+/* 图片容器：6张 总高 6*400=2400px */
+.carousel-wrap {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 2400px;
+    animation: slideUp 18s infinite ease-in-out;
+}
+.carousel-wrap img {
+    width: 320px;
+    height: 400px;
     display: block;
+    object-fit: cover;
 }
-
-/* 6张图 垂直排列 + 向上动画 */
-.carousel {
-    height: 400px;
-    overflow: hidden;
-}
-.carousel img {
-    height: 400px;
-}
-.carousel {
-    animation: slideUp 18s infinite linear;
-    height: 2400px; /* 6×400 */
-}
-
+/* 6张图 每张停留3秒 + 平滑上滑 */
 @keyframes slideUp {
-    0%   { transform: translateY(0); }
-    16%  { transform: translateY(-400px); }
-    32%  { transform: translateY(-800px); }
-    48%  { transform: translateY(-1200px); }
-    64%  { transform: translateY(-1600px); }
-    80%  { transform: translateY(-2000px); }
-    100% { transform: translateY(-2400px); }
+    0%    { transform: translateY(0); }
+    15%   { transform: translateY(0); }
+
+    16%   { transform: translateY(-400px); }
+    31%   { transform: translateY(-400px); }
+
+    32%   { transform: translateY(-800px); }
+    47%   { transform: translateY(-800px); }
+
+    48%   { transform: translateY(-1200px); }
+    63%   { transform: translateY(-1200px); }
+
+    64%   { transform: translateY(-1600px); }
+    79%   { transform: translateY(-1600px); }
+
+    80%   { transform: translateY(-2000px); }
+    95%   { transform: translateY(-2000px); }
+
+    100%  { transform: translateY(0); }
+}
+
+/* 图标旋转动画 */
+.icon-item {
+    display: inline-block;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    font-size: 18px;
+}
+.icon-item:hover {
+    transform: rotate(360deg);
 }
